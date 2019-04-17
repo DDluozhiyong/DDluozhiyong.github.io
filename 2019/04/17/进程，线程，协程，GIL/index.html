@@ -5,18 +5,19 @@
   
 
   
-  <title>luozhiyong Blog</title>
+  <title>进程，线程，协程，GIL | luozhiyong Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="luozhiyong Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="定义 进程：通俗理解一个运行的程序或者软件,进程是操作系统资源分配的基本单位一个进程默认有一个线程，进程里面可以创建线程，线程是依附在进程里面的，没有进程就没有线程。一个程序至少有一个进程,一个进程至少有一个线程,多进程可以完成多任务 线程：线程就是在程序运行过程中，执行程序代码的一个分支，每个运行的程序至少都有一个线程 协程：协程，又称微线程，纤程,也称为用户级线程，在不开辟线程的基础上完成多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程，线程，协程，GIL">
+<meta property="og:url" content="http://yoursite.com/2019/04/17/进程，线程，协程，GIL/index.html">
 <meta property="og:site_name" content="luozhiyong Blog">
-<meta property="og:description" content="python">
+<meta property="og:description" content="定义 进程：通俗理解一个运行的程序或者软件,进程是操作系统资源分配的基本单位一个进程默认有一个线程，进程里面可以创建线程，线程是依附在进程里面的，没有进程就没有线程。一个程序至少有一个进程,一个进程至少有一个线程,多进程可以完成多任务 线程：线程就是在程序运行过程中，执行程序代码的一个分支，每个运行的程序至少都有一个线程 协程：协程，又称微线程，纤程,也称为用户级线程，在不开辟线程的基础上完成多">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-17T03:00:58.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="luozhiyong Blog">
-<meta name="twitter:description" content="python">
+<meta name="twitter:title" content="进程，线程，协程，GIL">
+<meta name="twitter:description" content="定义 进程：通俗理解一个运行的程序或者软件,进程是操作系统资源分配的基本单位一个进程默认有一个线程，进程里面可以创建线程，线程是依附在进程里面的，没有进程就没有线程。一个程序至少有一个进程,一个进程至少有一个线程,多进程可以完成多任务 线程：线程就是在程序运行过程中，执行程序代码的一个分支，每个运行的程序至少都有一个线程 协程：协程，又称微线程，纤程,也称为用户级线程，在不开辟线程的基础上完成多">
   
     <link rel="alternate" href="/atom.xml" title="luozhiyong Blog" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-进程，线程，协程，GIL" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-进程，线程，协程，GIL" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/17/进程，线程，协程，GIL/" class="article-date">
   <time datetime="2019-04-17T02:57:26.000Z" itemprop="datePublished">2019-04-17</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/进程，线程，协程，GIL/">进程，线程，协程，GIL</a>
+    <h1 class="article-title" itemprop="name">
+      进程，线程，协程，GIL
     </h1>
   
 
@@ -155,56 +154,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/17/hello-world/" class="article-date">
-  <time datetime="2019-04-17T01:15:35.907Z" itemprop="datePublished">2019-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2019/04/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/hello-world/" data-id="cjukmrjog0000xrjx76v3ub3i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
