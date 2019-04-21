@@ -7,17 +7,17 @@
   
   <title>Python垃圾回收机制 | luozhiyong Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python垃圾回收机制 python中的垃圾回收机制只要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_">
+  <meta name="description" content="python中的垃圾回收机制主要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_refcnt就是做为引用计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python垃圾回收机制">
 <meta property="og:url" content="http://yoursite.com/2019/04/21/Python垃圾回收机制/index.html">
 <meta property="og:site_name" content="luozhiyong Blog">
-<meta property="og:description" content="Python垃圾回收机制 python中的垃圾回收机制只要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_">
+<meta property="og:description" content="python中的垃圾回收机制主要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_refcnt就是做为引用计">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-21T13:40:04.600Z">
+<meta property="og:updated_time" content="2019-04-21T13:57:34.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python垃圾回收机制">
-<meta name="twitter:description" content="Python垃圾回收机制 python中的垃圾回收机制只要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_">
+<meta name="twitter:description" content="python中的垃圾回收机制主要以引用计数为主，标志清除和分代回收为辅。 引用计数 python里每一个东西都是对象，它们的核心就是一个结构体：PyObject  typedef struct_object {  int ob_refcnt;  struct_typeobject *ob_type; } PyObject; PyObject是每个对象必有的内容，其中ob_refcnt就是做为引用计">
   
     <link rel="alternate" href="/atom.xml" title="luozhiyong Blog" type="application/atom+xml">
   
@@ -86,8 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Python垃圾回收机制</p>
-<p>python中的垃圾回收机制只要以引用计数为主，标志清除和分代回收为辅。</p>
+        <p>python中的垃圾回收机制主要以引用计数为主，标志清除和分代回收为辅。</p>
 <p>引用计数</p>
 <p>python里每一个东西都是对象，它们的核心就是一个结构体：PyObject</p>
 <pre><code> typedef struct_object {
@@ -131,7 +130,7 @@ list2.append(list1)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/Python垃圾回收机制/" data-id="cjuqzbgts0000ymjxru9svs3o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/21/Python垃圾回收机制/" data-id="cjur0fwsi00001kjx3v3rvypz" class="article-share-link">Share</a>
       
       
     </footer>
