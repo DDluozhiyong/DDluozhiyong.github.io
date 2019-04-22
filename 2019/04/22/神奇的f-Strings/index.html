@@ -5,18 +5,19 @@
   
 
   
-  <title>luozhiyong Blog</title>
+  <title>神奇的f-Strings | luozhiyong Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python">
-<meta property="og:type" content="website">
-<meta property="og:title" content="luozhiyong Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="在Python 3.6时添加了异步生成器、异步推导语法，非常实用的Path模块等等，另外一个很重要的是添加了f-strings语法，大家用了就会发现根本停不下来。本文就和大家聊聊这个神奇的 f-strings。 f-string是格式化字符串的新语法。与其他格式化方式相比，它们不仅更易读，更简洁，不易出错，而且速度更快！我们首先了解下可视化字符串语法的历史 1:%-formatting最早的格式化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神奇的f-Strings">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/神奇的f-Strings/index.html">
 <meta property="og:site_name" content="luozhiyong Blog">
-<meta property="og:description" content="python">
+<meta property="og:description" content="在Python 3.6时添加了异步生成器、异步推导语法，非常实用的Path模块等等，另外一个很重要的是添加了f-strings语法，大家用了就会发现根本停不下来。本文就和大家聊聊这个神奇的 f-strings。 f-string是格式化字符串的新语法。与其他格式化方式相比，它们不仅更易读，更简洁，不易出错，而且速度更快！我们首先了解下可视化字符串语法的历史 1:%-formatting最早的格式化">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-04-22T04:07:40.356Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="luozhiyong Blog">
-<meta name="twitter:description" content="python">
+<meta name="twitter:title" content="神奇的f-Strings">
+<meta name="twitter:description" content="在Python 3.6时添加了异步生成器、异步推导语法，非常实用的Path模块等等，另外一个很重要的是添加了f-strings语法，大家用了就会发现根本停不下来。本文就和大家聊聊这个神奇的 f-strings。 f-string是格式化字符串的新语法。与其他格式化方式相比，它们不仅更易读，更简洁，不易出错，而且速度更快！我们首先了解下可视化字符串语法的历史 1:%-formatting最早的格式化">
   
     <link rel="alternate" href="/atom.xml" title="luozhiyong Blog" type="application/atom+xml">
   
@@ -63,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-神奇的f-Strings" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-神奇的f-Strings" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/22/神奇的f-Strings/" class="article-date">
   <time datetime="2019-04-22T03:58:11.000Z" itemprop="datePublished">2019-04-22</time>
@@ -78,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/22/神奇的f-Strings/">神奇的f-Strings</a>
+    <h1 class="article-title" itemprop="name">
+      神奇的f-Strings
     </h1>
   
 
@@ -123,260 +122,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Python垃圾回收机制" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/21/Python垃圾回收机制/" class="article-date">
-  <time datetime="2019-04-21T14:35:25.000Z" itemprop="datePublished">2019-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/Python垃圾回收机制/">Python垃圾回收机制</a>
-    </h1>
+    <a href="/2019/04/21/Python垃圾回收机制/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python垃圾回收机制</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>python中的垃圾回收机制主要以引用计数为主，标志清除和分代回收为辅。</p>
-<p>引用计数</p>
-<p>python里每一个东西都是对象，它们的核心就是一个结构体：PyObject</p>
-<pre><code> typedef struct_object {
- int ob_refcnt;
- struct_typeobject *ob_type;
-} PyObject;
-</code></pre><p>PyObject是每个对象必有的内容，其中ob_refcnt就是做为引用计数。当一个对象有新的引用时，它的ob_refcnt就会增加，当引用它的对象被删除，它的ob_refcnt就会减少</p>
-<pre><code>#define Py_INCREF(op)   ((op)-&gt;ob_refcnt++) //增加计数
-#define Py_DECREF(op) \ //减少计数
-    if (--(op)-&gt;ob_refcnt != 0) \
-        ; \
-    else \
-        __Py_Dealloc((PyObject *)(op))
-</code></pre><p>当引用计数为0时，该对象生命就结束了。</p>
-<p>引用计数机制的优点：</p>
-<ol>
-<li>简单</li>
-<li>实时性：一旦没有引用，内存就直接释放了。不用像其他机制等到特定时机。实时性还带来一个好处：处理回收内存的时间分摊到了平时。</li>
-</ol>
-<p>引用计数机制的缺点：</p>
-<ol>
-<li>维护引用计数消耗资源</li>
-<li>循环引用<pre><code>list1 = []
-list2 = []
-list1.append(list2)
-list2.append(list1)
-</code></pre>list1与list2相互引用，如果不存在其他对象对它们的引用，list1与list2的引用计数也仍然为1，所占用的内存永远无法被回收，这将是致命的。<br>对于如今的强大硬件，缺点1尚可接受，但是循环引用导致内存泄露，注定python还将引入新的回收机制。(标记清除和分代收集)</li>
-</ol>
-<p>标记清除</p>
-<p>『标记清除（Mark—Sweep）』算法是一种基于追踪回收（tracing GC）技术实现的垃圾回收算法。它分为两个阶段：第一阶段是标记阶段，GC会把所有的『活动对象』打上标记，第二阶段是把那些没有标记的对象『非活动对象』进行回收。那么GC又是如何判断哪些是活动对象哪些是非活动对象的呢？</p>
-<p>对象之间通过引用（指针）连在一起，构成一个有向图，对象构成这个有向图的节点，而引用关系构成这个有向图的边。从根对象（root object）出发，沿着有向边遍历对象，可达的（reachable）对象标记为活动对象，不可达的对象就是要被清除的非活动对象。根对象就是全局变量、调用栈、寄存器.</p>
-<p><img src="/2019/04/21/Python垃圾回收机制/1555859434.jpg" alt></p>
-<p>在上图中，我们把小黑圈视为全局变量，也就是把它作为root object，从小黑圈出发，对象1可直达，那么它将被标记，对象2、3可间接到达也会被标记，而4和5不可达，那么1、2、3就是活动对象，4和5是非活动对象会被GC回收。</p>
-<p>标记清除算法作为Python的辅助垃圾收集技术主要处理的是一些容器对象，比如list、dict、tuple，instance等，因为对于字符串、数值对象是不可能造成循环引用问题。Python使用一个双向链表将这些容器对象组织起来。不过，这种简单粗暴的标记清除算法也有明显的缺点：清除非活动的对象前它必须顺序扫描整个堆内存，哪怕只剩下小部分活动对象也要扫描所有对象。</p>
-<p>分代回收</p>
-<p>分代回收是一种以空间换时间的操作方式，Python将内存根据对象的存活时间划分为不同的集合，每个集合称为一个代，Python将内存分为了3“代”，分别为年轻代（第0代）、中年代（第1代）、老年代（第2代），他们对应的是3个链表，它们的垃圾收集频率与对象的存活时间的增大而减小。新创建的对象都会分配在年轻代，年轻代链表的总数达到上限时，Python垃圾收集机制就会被触发，把那些可以被回收的对象回收掉，而那些不会回收的对象就会被移到中年代去，依此类推，老年代中的对象是存活时间最久的对象，甚至是存活于整个系统的生命周期内。同时，分代回收是建立在标记清除技术基础之上。分代回收同样作为Python的辅助垃圾收集技术处理那些容器对象</p>
-<p>参考：</p>
-<ul>
-<li><a href="http://www.memorymanagement.org/mmref/recycle.html#tracing-collectors" target="_blank" rel="noopener">http://www.memorymanagement.org/mmref/recycle.html#tracing-collectors</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/Python垃圾回收机制/" data-id="cjuruawxo0000q1jx3ugfzc26" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Python模块大全" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/17/Python模块大全/" class="article-date">
-  <time datetime="2019-04-17T07:39:24.000Z" itemprop="datePublished">2019-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/Python模块大全/">Python模块大全</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>OS 模块</p>
-<p>#os模块就是对操作系统进行操作，使用该模块必须先导入模块：<br>os 常用方法</p>
-<p>os.remove(‘path/filename’) 删除文件</p>
-<p>os.rename(oldname, newname) 重命名文件</p>
-<p>os.walk() 生成目录树下的所有文件名</p>
-<p>os.chdir(‘dirname’) 改变目录</p>
-<p>os.mkdir/makedirs(‘dirname’)创建目录/多层目录</p>
-<p>os.rmdir/removedirs(‘dirname’) 删除目录/多层目录</p>
-<p>os.listdir(‘dirname’) 列出指定目录的文件</p>
-<p>os.getcwd() 取得当前工作目录</p>
-<p>os.chmod() 改变目录权限</p>
-<p>os.path.basename(‘path/filename’) 去掉目录路径，返回文件名</p>
-<p>os.path.dirname(‘path/filename’) 去掉文件名，返回目录路径</p>
-<p>os.path.join(path1[,path2[,…]]) 将分离的各部分组合成一个路径名</p>
-<p>os.path.split(‘path’) 返回( dirname(), basename())元组</p>
-<p>os.path.splitext() 返回 (filename, extension) 元组</p>
-<p>os.path.getatime\ctime\mtime 分别返回最近访问、创建、修改时间</p>
-<p>os.path.getsize() 返回文件大小</p>
-<p>os.path.exists() 是否存在</p>
-<p>os.path.isabs() 是否为绝对路径</p>
-<p>os.path.isdir() 是否为目录</p>
-<p>os.path.isfile() 是否为文件</p>
-<p>sys 模块</p>
-<p>sys.argv 命令行参数List，第一个元素是程序本身路径</p>
-<p>sys.modules.keys() 返回所有已经导入的模块列表</p>
-<p>sys.exc_info() 获取当前正在处理的异常类,exc_type、exc_value、exc_traceback当前处理的异常详细信息</p>
-<p>sys.exit(n) 退出程序，正常退出时exit(0)</p>
-<p>sys.hexversion 获取Python解释程序的版本值，16进制格式如：0x020403F0</p>
-<p>sys.version 获取Python解释程序的版本信息</p>
-<p>sys.maxint 最大的Int值</p>
-<p>sys.maxunicode 最大的Unicode值</p>
-<p>sys.modules 返回系统导入的模块字段，key是模块名，value是模块</p>
-<p>sys.path 返回模块的搜索路径，初始化时使用PYTHONPATH环境变量的值</p>
-<p>sys.platform 返回操作系统平台名称</p>
-<p>sys.stdout 标准输出</p>
-<p>sys.stdin 标准输入</p>
-<p>sys.stderr 错误输出</p>
-<p>sys.exc_clear() 用来清除当前线程所出现的当前的或最近的错误信息</p>
-<p>sys.exec_prefix 返回平台独立的python文件安装的位置</p>
-<p>sys.byteorder 本地字节规则的指示器，big-endian平台的值是’big’,little-endian平台的值是’little’</p>
-<p>sys.copyright 记录python版权相关的东西</p>
-<p>sys.api_version 解释器的C的API版本</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/Python模块大全/" data-id="cjuruawxz0002q1jxnhjo4mxr" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-进程，线程，协程，GIL" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/17/进程，线程，协程，GIL/" class="article-date">
-  <time datetime="2019-04-17T02:57:26.000Z" itemprop="datePublished">2019-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/17/进程，线程，协程，GIL/">进程，线程，协程，GIL</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>定义<ol>
-<li>进程：通俗理解一个运行的程序或者软件,进程是操作系统资源分配的基本单位<br>一个进程默认有一个线程，进程里面可以创建线程，线程是依附在进程里面的，没有进程就没有线程。<br>一个程序至少有一个进程,一个进程至少有一个线程,多进程可以完成多任务</li>
-<li>线程：线程就是在程序运行过程中，执行程序代码的一个分支，每个运行的程序至少都有一个线程</li>
-<li>协程：协程，又称微线程，纤程,也称为用户级线程，在不开辟线程的基础上完成多任务，也就是在单线程的情况下完成多任务，多个任务按照一定顺序交替执行 通俗理解只要在def里面只看到一个yield关键字表示就是协程</li>
-<li>GIL锁：GIL ( Global Interperter Lock ) 称作 全局解释器锁<br>首先确定 GIL 并不是 Python 语言的特性，它是在实现 Python 解释器时引用的一个概念。<br>GIL 只在CPython 解释器上存在。</li>
-</ol>
-</li>
-<li>作用<ol>
-<li>进程：多进程可以实现多任务</li>
-<li>线程：使用多线程可以完成多任务。只有线程启动，线程才会加入到活动线程列表</li>
-<li>协程：协程是也是实现多任务的一种方式</li>
-<li>GIL锁：解决多个线程中的共享变量的竞争资源问题</li>
-</ol>
-</li>
-<li>特点</li>
-<li><ol>
-<li>进程：<ul>
-<li>进程之间不共享全局变量</li>
-<li>主进程会等待所有的子进程执行完成程序再退出</li>
-</ul>
-</li>
-<li>线程：<ul>
-<li>线程之间执行是无序的</li>
-<li>主线程会等待所有的子线程结束后才结束，如果需要可以设置守护主线程</li>
-<li>多线程共享全局变量，很方便在多个线程间共享数据</li>
-<li>多个线程同时对同一个全局变量进行操作，会有可能出现资源竞争数据错误的问题</li>
-<li>线程同步方式可以解决资源竞争数据错误问题，但是这样有多任务变成了单任务。还可以使用互斥锁，但是注意死锁。</li>
-</ul>
-</li>
-<li>协程：协程切换任务资源很小，效率高</li>
-<li>GIL锁：GIL ( Global Interperter Lock ) 全局解释器锁<br>Python 解释器也是一个应用程序<br>GIL 只在 CPython 解释器中存在<br>线程互斥锁是 Python 代码层面的锁<br>GIL 是 Python 解释器层面的锁<br>互斥锁和 GIL 锁都是用来解决多个线程中的共享变量的竞争资源问题。</li>
-</ol>
-</li>
-<li>进程、线程、线程的对比<ol>
-<li>进程是资源分配的单位</li>
-<li>线程是操作系统调度的单位</li>
-<li>进程切换需要的资源最大，效率很低</li>
-<li>线程切换需要的资源一般，效率一般（当然了在不考虑GIL的情况下）</li>
-<li>协程切换任务资源很小，效率高</li>
-<li>多进程、多线程根据cpu核数不一样可能是并行的，但是协程是在一个线程中 所以是并发</li>
-</ol>
-</li>
-<li>小结<ul>
-<li>进程、线程、协程都是可以完成多任务的，可以根据自己实际开发的需要选择使用</li>
-<li>由于线程、协程需要的资源很少，所以使用线程和协程的几率最大</li>
-<li>开辟协程需要的资源最少</li>
-<li>GIL ( Global Interpreter Lock ) 全局解释器锁</li>
-<li>GIL 只在 CPython 中存在</li>
-<li>Python 解释器也是一个应用程序</li>
-<li>线程互斥锁是 Python 代码层面的锁，GIL 是 Python 解释层面的锁</li>
-<li>由于 GIL 的存在，Python程序中同一时刻有且只有一个线程会执行，无法有效利用多核 CPU</li>
-<li>Python 中的多线程不适合计算密集型的任务</li>
-<li>在遇到IO等待时，会释放 GIL 锁，可以提高 Python 中IO密集型程序的效率</li>
-<li>可以使用多进程+协程替代多线程实现多任务</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/进程，线程，协程，GIL/" data-id="cjuruawy20003q1jxx5tbr0sn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
